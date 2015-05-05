@@ -1,5 +1,20 @@
-# Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
+# MySQL
+#alias mysql_start="sudo /usr/local/mysql/support-files/mysql.server start"
+#alias mysql_stop="sudo /usr/local/mysql/support-files/mysql.server stop"
+#alias mysql_restart="sudo /usr/local/mysql/support-files/mysql.server restart"
+
+export PATH=/usr/local/Cellar/python/bin:/opt/local/mjprof1.0:~/.yscripts:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+
+# oracle
+export PATH=$PATH:/opt/instantclient
+export SQLPATH=/opt/instantclient
+export DYLD_LIBRARY_PATH=/opt/instantclient
+
+# MongoDB
+alias mongo_start="mongod -dbpath /usr/local/var/mongodb"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -37,12 +52,23 @@ if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completio
 	complete -o default -o nospace -F _git g;
 fi;
 
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+####
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/i307088/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
 
-# Add tab completion for `defaults read|write NSGlobalDomain`
-# You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults;
+# Vagrant
+vssh () {
+	vagrant ssh $1 -- -A
+}
 
-# Add `killall` tab completion for common apps
-complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
+# Fleet/Vagrant
+export FLEETCTL_TUNNEL=127.0.0.1:2222
+
+source ~/.yscripts/yutils
+
+# [y]
+ycd_func() {
+	cd ~/Workspaces/projects/$1
+}
+alias ycd=ycd_func

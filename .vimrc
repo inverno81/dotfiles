@@ -1,7 +1,6 @@
 " Use the Solarized Dark theme
 set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+colorscheme badwolf
 
 " Make Vim more useful
 set nocompatible
@@ -31,8 +30,27 @@ if exists("&undodir")
 	set undodir=~/.vim/undo
 endif
 
+" Preserve cursor position
+set viminfo='10,\"100,:20,%,n~/.viminfo
+
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
+
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
+
+" Set paste mode
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
 
 " Respect modeline in files
 set modeline
@@ -57,6 +75,8 @@ set hlsearch
 set ignorecase
 " Highlight dynamically as pattern is typed
 set incsearch
+" Show matching braces
+set showmatch
 " Always show status line
 set laststatus=2
 " Enable mouse in all modes
