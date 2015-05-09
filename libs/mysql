@@ -1,0 +1,7 @@
+## Mysql
+
+# Check mysql dirs
+function mysql.paths() {
+	#mysql -uroot -p -e 'SHOW VARIABLES WHERE Variable_Name LIKE "%dir"'
+	mysql -e 'SHOW VARIABLES WHERE Variable_Name LIKE "%dir"'
+}

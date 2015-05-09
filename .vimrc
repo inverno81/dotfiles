@@ -2,6 +2,30 @@
 set background=dark
 colorscheme badwolf
 
+" Set name of file in terminal title
+let &titlestring = "(" . expand("%:t") . ")"
+if &term == "screen" || &term == "xterm" || &term == "xterm-256color"
+  set t_ts=k
+  set t_fs=\
+  set title
+endif
+
+" Highlight long lines
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%91v.\+/
+
+"set foldmethod=marker
+"set foldlevelstart=1
+"
+"let javaScript_fold=1         " JavaScript
+"let perl_fold=1               " Perl
+"let php_folding=1             " PHP
+"let r_syntax_folding=1        " R
+"let ruby_fold=1               " Ruby
+"let sh_fold_enabled=1         " sh
+"let vimsyn_folding='af'       " Vim script
+"let xml_syntax_folding=1      " XML
+
 " Make Vim more useful
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
@@ -66,6 +90,7 @@ syntax on
 set cursorline
 " Make tabs as wide as two spaces
 set tabstop=2
+set shiftwidth=2
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list

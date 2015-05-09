@@ -179,7 +179,8 @@ endif
 
 call s:HL('Normal', 'plain', 'blackgravel')
 
-call s:HL('Folded', 'mediumgravel', 'bg', 'none')
+" call s:HL('Folded', 'mediumgravel', 'bg', 'none')
+call s:HL('Folded', 'tardis', 'bg', 'none')
 
 call s:HL('VertSplit', 'lightgravel', 'bg', 'none')
 
@@ -209,7 +210,7 @@ call s:HL('StatusLineNC', 'snow', 'deepgravel', 'bold')
 
 call s:HL('Directory', 'dirtyblonde', '', 'bold')
 
-call s:HL('Title', 'lime')
+call s:HL('Title', 'tardis')
 
 call s:HL('ErrorMsg',   'taffy',       'bg', 'bold')
 call s:HL('MoreMsg',    'dalespale',   '',   'bold')
